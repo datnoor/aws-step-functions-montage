@@ -1,0 +1,19 @@
+| cntr1 | cntr2 |                             plus |                            minus |         diff             |
+| int   | int   |                             char |                             char |         char             |
+       1       4 2mass-atlas-980527n-j0240244.fits  2mass-atlas-980527n-j0240232.fits  diff.000001.000004.fits
+       1       7 2mass-atlas-980527n-j0240244.fits  2mass-atlas-980527n-j0230033.fits  diff.000001.000007.fits
+       1       9 2mass-atlas-980527n-j0240244.fits  2mass-atlas-980527n-j0250033.fits  diff.000001.000009.fits
+       2       3 2mass-atlas-980527n-j0220232.fits  2mass-atlas-980527n-j0230044.fits  diff.000002.000003.fits
+       2       7 2mass-atlas-980527n-j0220232.fits  2mass-atlas-980527n-j0230033.fits  diff.000002.000007.fits
+       2      10 2mass-atlas-980527n-j0220232.fits  2mass-atlas-980527n-j0220244.fits  diff.000002.000010.fits
+       3       4 2mass-atlas-980527n-j0230044.fits  2mass-atlas-980527n-j0240232.fits  diff.000003.000004.fits
+       3       7 2mass-atlas-980527n-j0230044.fits  2mass-atlas-980527n-j0230033.fits  diff.000003.000007.fits
+       4       5 2mass-atlas-980527n-j0240232.fits  2mass-atlas-980527n-j0250044.fits  diff.000004.000005.fits
+       4       7 2mass-atlas-980527n-j0240232.fits  2mass-atlas-980527n-j0230033.fits  diff.000004.000007.fits
+       4       9 2mass-atlas-980527n-j0240232.fits  2mass-atlas-980527n-j0250033.fits  diff.000004.000009.fits
+       5       6 2mass-atlas-980527n-j0250044.fits  2mass-atlas-980527n-j0260232.fits  diff.000005.000006.fits
+       5       9 2mass-atlas-980527n-j0250044.fits  2mass-atlas-980527n-j0250033.fits  diff.000005.000009.fits
+       6       8 2mass-atlas-980527n-j0260232.fits  2mass-atlas-980527n-j0260244.fits  diff.000006.000008.fits
+       6       9 2mass-atlas-980527n-j0260232.fits  2mass-atlas-980527n-j0250033.fits  diff.000006.000009.fits
+       7      10 2mass-atlas-980527n-j0230033.fits  2mass-atlas-980527n-j0220244.fits  diff.000007.000010.fits
+       8       9 2mass-atlas-980527n-j0260244.fits  2mass-atlas-980527n-j0250033.fits  diff.000008.000009.fits

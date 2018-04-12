@@ -1,0 +1,113 @@
+{
+  "Comment": "",
+  "StartAt": "mProjectPP",
+  "States": {
+    "mProjectPP": {
+      "Type": "Parallel",
+      "Next": "mBg",
+      "Branches": [
+        {
+          "StartAt": "Pass1",
+          "States": {
+            "Pass1": {
+              "Type": "Pass",
+              "Next": "mProjectPP1"
+            },
+            "mProjectPP1": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:eu-west-1:217740368147:function:hyperflowExecutor2",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Pass2",
+          "States": {
+            "Pass2": {
+              "Type": "Pass",
+              "Next": "mProjectPP2"
+            },
+            "mProjectPP2": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:eu-west-1:217740368147:function:hyperflowExecutor2",
+              "End": true
+            }
+          }
+        }
+      ]
+    },
+    "mBg": {
+      "Type": "Parallel",
+      "Next": "Final State",
+      "Branches": [
+        {
+          "StartAt": "BgPass1",
+          "States": {
+            "BgPass1": {
+              "Type": "Pass",
+              "Result": {
+                "body": {
+                  "executable": "mProjectPP",
+                  "args": [
+                    "-X",
+                    "-x",
+                    "1.03543",
+                    "2mass-atlas-980527n-j0240244.fits",
+                    "p2mass-atlas-980527n-j0240244.fits",
+                    "big_region_20180104_122144_24476.hdr"
+                  ],
+                  "env": {},
+                  "inputs": [
+                    {
+                      "name": "2mass-atlas-980527n-j0240244.fits"
+                    },
+                    {
+                      "name": "big_region_20180104_122144_24476.hdr"
+                    }
+                  ],
+                  "outputs": [
+                    {
+                      "name": "p2mass-atlas-980527n-j0240244.fits"
+                    },
+                    {
+                      "name": "p2mass-atlas-980527n-j0240244_area.fits"
+                    }
+                  ],
+                  "options": {
+                    "storage": "s3",
+                    "bucket": "montage-lambda",
+                    "prefix": "data/0.1/input"
+                  }
+                }
+              },
+              "Next": "mBg1"
+            },
+            "mBg1": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:eu-west-1:217740368147:function:hyperflowExecutor2",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "BgPass2",
+          "States": {
+            "BgPass2": {
+              "Type": "Pass",
+              "Next": "mBg2"
+            },
+            "mBg2": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:eu-west-1:217740368147:function:hyperflowExecutor2",
+              "End": true
+            }
+          }
+        }
+      ]
+    },
+    "Final State": {
+      "Type": "Pass",
+      "End": true
+    }
+  }
+}
