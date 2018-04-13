@@ -1,8 +1,11 @@
 import json
+import argparse
 
 
 class StepFunctionsDagConverter:
-    def __init__(self):
+    def __init__(self, bucket, lambda_arn):
+        self.bucket = bucket
+        self.lambda_arn = lambda_arn
         self.result = None
         self.data = {}
         self.names = []
@@ -52,8 +55,8 @@ class StepFunctionsDagConverter:
                             "outputs": self._data(self.outputs[index]),
                             "options": {
                                 "storage": "s3",
-                                "bucket": "montage-lambda",
-                                "prefix": "data/0.025/input"
+                                "bucket": bucket,
+                                "prefix": "data/input"
                             }
                         }
                     },
@@ -61,7 +64,7 @@ class StepFunctionsDagConverter:
                 },
                 name + "Task" + str(counter): {
                     "Type": "Task",
-                    "Resource": "arn:aws:lambda:eu-west-1:217740368147:function:hyperflowExecutor2",
+                    "Resource": lambda_arn,
                     "End": True
                 }
             }
@@ -99,11 +102,28 @@ class StepFunctionsDagConverter:
         return self.result
 
 
-def main():
-    converter = StepFunctionsDagConverter()
-    converter.load("./data/0.1/workdir/dag.json")
+def main(source, destination, bucket="montage-lambda", lambda_arn="${lambda-arn}"):
+    converter = StepFunctionsDagConverter(bucket, lambda_arn)
+    converter.load(source)
     converter.convert()
-    converter.save("./sf.json")
+    converter.save(destination)
+
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Convert Montage DAG to the AWS Step Functions definition.')
+    parser.add_argument('source', help='Source file path - dag.json')
+    parser.add_argument('destination', help='Destination file path - Step Function definition json')
+    parser.add_argument('bucket', help='AWS S3 bucket name')
+    parser.add_argument('lambda', help='AWS Lambda arn')
+
+    namespace = parser.parse_args()
+    variables = vars(namespace)
+
+    source = variables['source']
+    destination = variables['destination']
+    bucket = variables['bucket']
+    lambda_arn = variables['lambda']
+
+    print(lambda_arn)
+
+    main(source, destination, bucket, lambda_arn)
