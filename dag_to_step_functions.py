@@ -102,7 +102,7 @@ class StepFunctionsDagConverter:
         return self.result
 
 
-def main(source, destination, bucket="montage-lambda", lambda_arn="${lambda-arn}"):
+def main(source, destination, bucket, lambda_arn):
     converter = StepFunctionsDagConverter(bucket, lambda_arn)
     converter.load(source)
     converter.convert()
@@ -123,7 +123,5 @@ if __name__ == "__main__":
     destination = variables['destination']
     bucket = variables['bucket']
     lambda_arn = variables['lambda']
-
-    print(lambda_arn)
 
     main(source, destination, bucket, lambda_arn)
