@@ -17,7 +17,8 @@ Running deployment script :
  - downloads all dependencies defined in `executor/package.json` required by AWS Lambda executor function (using `npm`)
  - creates an archive with the Montage steps executor and Montage executable binaries as AWS Lambda function
  - downloads terraform deployment scripts from [szwojtkowski/aws-step-functions-terraform](https://github.com/szwojtkowski/aws-step-functions-terraform)
- - configures and deploys the whole required AWS setup - policies, roles, lambdas and step functions
+ - configures and deploys the whole required AWS setup - policies, roles, buckets, lambdas and step functions
+ - uploads Montage workflow input data to AWS S3 using aws-cli
  
  Running clean script :
  
